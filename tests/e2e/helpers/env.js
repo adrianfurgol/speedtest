@@ -7,6 +7,7 @@ const baseUrls = {
   standaloneNew: 'http://127.0.0.1:18185',
   standaloneApostrophe: 'http://127.0.0.1:18186',
   standaloneAlpine: 'http://127.0.0.1:18187',
+  standaloneStabilityTitle: 'http://127.0.0.1:18189',
 };
 
 module.exports = {

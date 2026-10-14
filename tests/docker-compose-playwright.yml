@@ -51,10 +51,20 @@ services:
       - WEBPORT=8080
       - USE_NEW_DESIGN=true
       - "TAGLINE=It'd rather be fast!"
+    ports:
+      - "18186:8080"
+
+  standalone-stability-title:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    environment:
+      - MODE=standalone
+      - WEBPORT=8080
       - 'TITLE=Main speed test'
       - 'TITLE_STABILITY=Stabilité "Test" <custom> & ''quotes'' / $$value'
     ports:
-      - "18186:8080"
+      - "18189:8080"
 
   backend:
     build:
