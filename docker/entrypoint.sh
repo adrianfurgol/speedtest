@@ -125,6 +125,14 @@ if [[ "$MODE" == "frontend" || "$MODE" == "dual" ||  "$MODE" == "standalone" ]];
     sed -i "s/<title>LibreSpeed - Free and Open Source Speedtest<\\/title>/<title>$TITLE_ESCAPED - Free and Open Source Speedtest<\\/title>/g; s/<h1>Free and Open Source Speedtest\\.<\\/h1>/<h1>$TITLE_ESCAPED<\\/h1>/g" /var/www/html/index-modern.html
   fi
 
+  # Prefer the stability-specific title, then the main title, then the page default.
+  STABILITY_TITLE=${TITLE_STABILITY:-${TITLE:-LibreSpeed} - Stability Test}
+  STABILITY_TITLE_ONE_LINE=${STABILITY_TITLE//$'\r'/}
+  STABILITY_TITLE_ONE_LINE=${STABILITY_TITLE_ONE_LINE//$'\n'/ }
+  STABILITY_TITLE_HTML_ESCAPED=$(html_escape "$STABILITY_TITLE_ONE_LINE")
+  STABILITY_TITLE_ESCAPED=$(sed_escape "$STABILITY_TITLE_HTML_ESCAPED")
+  sed -i "s/<title>LibreSpeed - Stability Test<\\/title>/<title>$STABILITY_TITLE_ESCAPED<\\/title>/g; s/<h1>LibreSpeed - Stability Test<\\/h1>/<h1>$STABILITY_TITLE_ESCAPED<\\/h1>/g" /var/www/html/stability.html
+
   # Replace modern page tagline if TAGLINE is set
   if [ -n "$TAGLINE" ]; then
     TAGLINE_ONE_LINE=${TAGLINE//$'\r'/}

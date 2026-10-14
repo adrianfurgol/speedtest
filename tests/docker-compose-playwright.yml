@@ -51,6 +51,8 @@ services:
       - WEBPORT=8080
       - USE_NEW_DESIGN=true
       - "TAGLINE=It'd rather be fast!"
+      - 'TITLE=Main speed test'
+      - 'TITLE_STABILITY=Stabilité "Test" <custom> & ''quotes'' / $$value'
     ports:
       - "18186:8080"
 
